@@ -1,0 +1,29 @@
+[Unit]
+Description=Longwave web service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=longwave
+Group=longwave
+WorkingDirectory=/opt/longwave
+Environment=LONGWAVE_CACHE_PATH=/var/cache/longwave/series.json
+Environment=LONGWAVE_CACHE_TTL=21600
+ExecStart=/opt/longwave/.venv/bin/gunicorn --workers 2 --threads 2 --bind 127.0.0.1:8080 --access-logfile - --error-logfile - longwave.app:app
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/cache/longwave
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+
+[Install]
+WantedBy=multi-user.target
