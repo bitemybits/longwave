@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Longwave</title>
+  <meta name="description" content="Long-horizon market baseline viewer">
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div>
+        <p class="eyebrow">LONG-HORIZON BASELINE</p>
+        <h1>Longwave</h1>
+      </div>
+      <span id="status" class="status">loading</span>
+    </header>
+
+    <section class="metrics" aria-label="Current metrics">
+      <article><span>Price</span><strong id="price">—</strong></article>
+      <article><span>200W baseline</span><strong id="wma">—</strong></article>
+      <article><span>Distance</span><strong id="distance">—</strong></article>
+    </section>
+
+    <section class="panel">
+      <div class="chart-head">
+        <div><strong>Weekly close vs 200-week mean</strong><small>logarithmic scale</small></div>
+        <div class="legend"><span class="dot price"></span>Price <span class="dot mean"></span>200W</div>
+      </div>
+      <canvas id="chart" role="img" aria-label="Weekly market price and 200-week moving average"></canvas>
+      <p class="note">Shaded vertical bands mark weeks where price is below the 200-week baseline.</p>
+    </section>
+
+    <footer><span id="source">source: —</span><span id="updated">updated: —</span></footer>
+  </main>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
